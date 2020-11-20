@@ -1,8 +1,6 @@
 ---
 - hosts: macos_host
   roles:
-  # - test
-  - kvm
-  - allow-unsafe-interrupts
-  - vfio
-  - ids-vfio
+  - this
+  - test
+  - foxlet-MacOS

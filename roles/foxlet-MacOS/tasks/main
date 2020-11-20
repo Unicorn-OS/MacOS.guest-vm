@@ -1,0 +1,25 @@
+---
+- name: Install deps
+  apt:
+    pkg:
+    - qemu-system
+    - qemu-utils
+    - python3
+    - python3-pip
+  become: true
+
+- name: Create directory cloud/macos
+  file:
+    path: '{{macsrc}}'
+    state: directory
+
+- name: Git checkout
+  git:
+    repo: https://github.com/foxlet/macOS-Simple-KVM.git
+    dest: '{{macsrc}}'
+    version: '{{commit}}'
+
+- name: Download macos {{version}}
+  shell: './jumpstart.sh --{{version}}'
+  args:
+    chdir: '{{macsrc}}'

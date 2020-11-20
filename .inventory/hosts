@@ -1,0 +1,9 @@
+[hyperion]
+192.168.2.4
+
+[hyperion:vars]
+ansible_become_password=u
+ansible_user=me
+
+[macos_host:children]
+hyperion
