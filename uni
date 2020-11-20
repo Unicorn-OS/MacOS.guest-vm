@@ -3,4 +3,6 @@
   roles:
   - this
   - test
-  - foxlet-MacOS
+  - foxlet-MacOS/init
+  # - sikuli/install
+  # - foxlet-MacOS/virt-manager
