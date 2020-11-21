@@ -1,0 +1,7 @@
+---
+machome: '/home/{{ansible_user}}/.uni/cloud/macos'
+
+mac:
+  src: '{{machome}}/src'
+  img: '{{machome}}/img'
+  img_name: 'Dev-MacOS-{{version}}'

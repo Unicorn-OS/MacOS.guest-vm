@@ -1,0 +1,8 @@
+---
+- hosts: macos_host
+  roles:
+  - this
+  - test
+  - foxlet-MacOS/init
+  # - sikuli/install
+  # - foxlet-MacOS/virt-manager

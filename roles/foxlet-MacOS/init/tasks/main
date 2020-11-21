@@ -1,0 +1,70 @@
+---
+- name: Install deps
+  apt:
+    pkg:
+    - qemu-system
+    - qemu-utils
+    - python3
+    - python3-pip
+  become: true
+
+- name: Create directory cloud/macos
+  file:
+    path: '{{item}}'
+    state: directory
+  with_items:
+    - '{{mac.src}}'
+    - '{{mac.img}}'
+
+- name: git
+  block:
+  - name: Check that the somefile.conf exists
+    stat:
+      path: '{{mac.src}}/.git/config'
+    register: src_exists
+
+  - name: Git checkout
+    git:
+      repo: https://github.com/foxlet/macOS-Simple-KVM.git
+      dest: '{{mac.src}}'
+      version: '{{commit}}'
+    when: not src_exists.stat.exists
+
+  - name: .gitignore local changes
+    blockinfile:
+      path: '{{mac.src}}/.gitignore'
+      backup: yes
+      block: |
+        BaseSystem.img
+        basic.sh
+
+- name: Download macos {{version}}
+  shell: './jumpstart.sh --{{version}}'
+  args:
+    chdir: '{{mac.src}}'
+    creates: '{{mac.src}}/BaseSystem.img'
+
+- name: Create vm img
+  shell: 'qemu-img create -f qcow2 {{mac.img_name}}.qcow2 {{size}}'
+  args:
+    chdir: '{{mac.img}}'
+    creates: '{{mac.img}}/{{mac.img_name}}.qcow2'
+
+# Alt try
+# - name: Configure basic.sh
+#   blockinfile:
+#     path: '{{mac.src}}/basic.sh'
+#     backup: yes
+#     marker: '/ # {mark} ANSIBLE MANAGED BLOCK'
+#     block: |
+#       -drive id=SystemDisk,if=none,file={{mac.img}}/{{mac.img_name}}.qcow2 \
+#       -device ide-hd,bus=sata.4,drive=SystemDisk
+
+- name: Configure basic.sh
+  lineinfile:
+    dest:
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+  with_items:
+    - { regexp: '^-drive id=SystemDisk', line: '-drive id=SystemDisk,if=none,file={{mac.img}}/{{mac.img_name}}.qcow2 \' }
+    - { regexp: 'drive=SystemDisk$', line: '-device ide-hd,bus=sata.4,drive=SystemDisk' }
