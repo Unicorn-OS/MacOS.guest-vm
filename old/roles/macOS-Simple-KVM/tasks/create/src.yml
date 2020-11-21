@@ -1,0 +1,13 @@
+---
+- name: Create domains directory
+  become: true
+  file:
+    path: '{{domain_dir}}/src'
+    state: directory
+    owner: '{{ansible_user}}'
+    group: '{{ansible_user}}'
+
+- git:
+    repo: '{{macvm_src.repo.main}}'
+    dest: '{{ domain_dir }}/src'
+    version: '{{macvm_src.release.works.hash}}'

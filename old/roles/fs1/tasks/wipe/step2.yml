@@ -1,0 +1,24 @@
+---
+# - name: Remove thin raid
+#   lvol:
+#     vg: 'standard'
+#     lv: 'standard-raid0'
+#     state: absent
+#     force: yes
+
+- name: raid Remove Thick lv
+  become: true
+  lvol:
+    vg: 'standard'
+    lv: 'ubuntu'
+    state: absent
+    force: yes
+
+# - name: Remove old pool
+#   become: yes
+#   lvg:
+#     vg: 'standard-raid0'
+#     state: absent
+#     force: yes
+
+    # thinpool: '{{pool1_lv}}'

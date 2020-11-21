@@ -1,0 +1,8 @@
+---
+- import_tasks: raid-0.yml
+  tags:
+    - stripe
+
+# - import_tasks: block/sheepdog.yml
+#   tags:
+#     - sheep

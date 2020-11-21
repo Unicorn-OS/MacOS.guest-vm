@@ -1,0 +1,6 @@
+---
+
+- hosts: local
+  roles:
+  - vm_lvm
+  - fs1

@@ -1,0 +1,15 @@
+---
+
+- name: Create a Thick Raid-0 vol!
+  become: yes
+  lvol:
+    lv: 'ubuntu'
+    vg: 'standard'
+    size: '100g'
+    shrink: no  # Makes idempotent!
+    opts: '--type raid0'
+  tags:
+    - raid
+
+- debug:
+    msg: 'Created a storage pool on all devices!'

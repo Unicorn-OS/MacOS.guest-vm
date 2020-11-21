@@ -1,0 +1,7 @@
+---
+
+- name: Fetches macOS products from Apple's SoftwareUpdate service. - Catalina
+  command: 'sh {{domain_dir}}/src/jumpstart.sh --catalina'
+  args:
+    chdir: '{{domain_dir}}/src/'
+    creates: 'BaseSystem.img'

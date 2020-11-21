@@ -1,0 +1,11 @@
+---
+domain_dir: '{{ cloud }}/domain/macOS-Simple'
+
+macvm_src:
+  release:
+    works:
+      name: '[DOCS] Updated instructions to use virt-manager'
+      hash: '6ff1d948cfbf597e54d54c9abad5ee0f5d6244a1'
+  repo:
+    main: 'https://github.com/foxlet/macOS-Simple-KVM.git'
+    Ark: 'https://github.com/primesrc/macOS-Simple-KVM.git'

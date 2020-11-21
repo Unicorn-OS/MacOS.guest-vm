@@ -1,0 +1,4 @@
+---
+- name: domain dir
+  debug:
+    msg: '{{domain_dir}}'

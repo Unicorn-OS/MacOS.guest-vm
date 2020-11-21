@@ -1,0 +1,8 @@
+---
+- import_tasks: src.yml
+
+- import_tasks: jumpstart.yml
+
+# - import_tasks: instance_lvm.yml
+
+- import_tasks: define.yml
