@@ -5,5 +5,6 @@
 ansible_become_password=u
 ansible_user=me
 
-[macos_host:children]
-hyperion
+[net:children]
+#hyperion
+local
