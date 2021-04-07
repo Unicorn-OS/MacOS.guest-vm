@@ -45,20 +45,10 @@
     creates: '{{mac.src}}/BaseSystem.img'
 
 - name: Create vm img
-  shell: 'qemu-img create -f qcow2 {{mac.img_name}}.qcow2 {{size}}'
+  shell: 'qemu-img create -f qcow2 {{mac.img_name}}.qcow2 {{hw.disk}}'
   args:
     chdir: '{{mac.img}}'
     creates: '{{mac.img}}/{{mac.img_name}}.qcow2'
-
-# Alt try
-# - name: Configure basic.sh
-#   blockinfile:
-#     path: '{{mac.src}}/basic.sh'
-#     backup: yes
-#     marker: '/ # {mark} ANSIBLE MANAGED BLOCK'
-#     block: |
-#       -drive id=SystemDisk,if=none,file={{mac.img}}/{{mac.img_name}}.qcow2 \
-#       -device ide-hd,bus=sata.4,drive=SystemDisk
 
 - name: Configure basic.sh
   lineinfile:
@@ -68,3 +58,15 @@
   with_items:
     - { regexp: '^-drive id=SystemDisk', line: '-drive id=SystemDisk,if=none,file={{mac.img}}/{{mac.img_name}}.qcow2 \' }
     - { regexp: 'drive=SystemDisk$', line: '-device ide-hd,bus=sata.4,drive=SystemDisk' }
+
+- name: Memory
+  lineinfile:
+    dest: '{{mac.src}}/basic.sh'
+    regexp: "-m 2G"
+    line: "-m {{ vm.mem }}G"
+
+- name: CPU
+  lineinfile:
+    dest: '{{mac.src}}/basic.sh'
+    regexp: "-smp 4,cores=2"
+    line: "-smp cores={{cores}},threads={{threads}},sockets=1"

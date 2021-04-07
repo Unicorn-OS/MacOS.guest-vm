@@ -4,8 +4,8 @@
   file:
     path: '{{domain_dir}}/src'
     state: directory
-    owner: '{{ansible_user}}'
-    group: '{{ansible_user}}'
+    owner: '{{user}}'
+    group: '{{user}}'
 
 - git:
     repo: '{{macvm_src.repo.main}}'

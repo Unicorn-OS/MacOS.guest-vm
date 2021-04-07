@@ -1,5 +1,5 @@
 ---
-machome: '/home/{{ansible_user}}/.uni/cloud/macos'
+machome: '/home/{{user}}/.uni/cloud/macos'
 
 mac:
   src: '{{machome}}/src'

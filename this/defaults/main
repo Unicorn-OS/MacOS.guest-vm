@@ -1,0 +1,10 @@
+---
+vm:
+  memory: 4
+  cores: 4
+  threads: 8
+  disk: 256G
+
+mac:
+  version: catalina
+# mojave
