@@ -62,7 +62,7 @@
 
 - name: Configure basic.sh
   lineinfile:
-    dest:
+    dest: '{{mac.src}}/basic.sh'
     regexp: "{{ item.regexp }}"
     line: "{{ item.line }}"
   with_items:
