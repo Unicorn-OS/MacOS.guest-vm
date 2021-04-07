@@ -13,26 +13,26 @@
     path: '{{item}}'
     state: directory
   with_items:
-    - '{{mac.src}}'
-    - '{{mac.img}}'
+    - '{{instance.src}}'
+    - '{{instance.img}}'
 
 - name: git
   block:
   - name: Check that the somefile.conf exists
     stat:
-      path: '{{mac.src}}/.git/config'
+      path: '{{instance.src}}/.git/config'
     register: src_exists
 
   - name: Git checkout
     git:
       repo: https://github.com/foxlet/macOS-Simple-KVM.git
-      dest: '{{mac.src}}'
+      dest: '{{instance.src}}'
       version: '{{commit}}'
     when: not src_exists.stat.exists
 
   - name: .gitignore local changes
     blockinfile:
-      path: '{{mac.src}}/.gitignore'
+      path: '{{instance.src}}/.gitignore'
       backup: yes
       block: |
         BaseSystem.img
@@ -41,32 +41,32 @@
 - name: Download macos {{mac.version}}
   shell: './jumpstart.sh --{{mac.version}}'
   args:
-    chdir: '{{mac.src}}'
-    creates: '{{mac.src}}/BaseSystem.img'
+    chdir: '{{instance.src}}'
+    creates: '{{instance.src}}/BaseSystem.img'
 
 - name: Create vm img
-  shell: 'qemu-img create -f qcow2 {{mac.img_name}}.qcow2 {{hw.disk}}'
+  shell: 'qemu-img create -f qcow2 {{instance.img_name}}.qcow2 {{hw.disk}}'
   args:
-    chdir: '{{mac.img}}'
-    creates: '{{mac.img}}/{{mac.img_name}}.qcow2'
+    chdir: '{{instance.img}}'
+    creates: '{{instance.img}}/{{instance.img_name}}.qcow2'
 
 - name: Configure basic.sh
   lineinfile:
-    dest: '{{mac.src}}/basic.sh'
+    dest: '{{instance.src}}/basic.sh'
     regexp: "{{ item.regexp }}"
     line: "{{ item.line }}"
   with_items:
-    - { regexp: '^-drive id=SystemDisk', line: '-drive id=SystemDisk,if=none,file={{mac.img}}/{{mac.img_name}}.qcow2 \' }
+    - { regexp: '^-drive id=SystemDisk', line: '-drive id=SystemDisk,if=none,file={{instance.img}}/{{instance.img_name}}.qcow2 \' }
     - { regexp: 'drive=SystemDisk$', line: '-device ide-hd,bus=sata.4,drive=SystemDisk' }
 
 - name: Memory
   lineinfile:
-    dest: '{{mac.src}}/basic.sh'
+    dest: '{{instance.src}}/basic.sh'
     regexp: "-m 2G"
     line: "-m {{ vm.mem }}G"
 
 - name: CPU
   lineinfile:
-    dest: '{{mac.src}}/basic.sh'
+    dest: '{{instance.src}}/basic.sh'
     regexp: "-smp 4,cores=2"
     line: "-smp cores={{cores}},threads={{threads}},sockets=1"

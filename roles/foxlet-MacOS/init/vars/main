@@ -1,7 +1,7 @@
 ---
 machome: '/home/{{user}}/.uni/cloud/macos'
 
-mac:
+instance:
   src: '{{machome}}/src'
   img: '{{machome}}/img'
   img_name: 'Dev-MacOS-{{mac.version}}'
