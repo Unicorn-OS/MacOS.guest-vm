@@ -45,7 +45,7 @@
     creates: '{{instance.src}}/BaseSystem.img'
 
 - name: Create vm img
-  shell: 'qemu-img create -f qcow2 {{instance.img_name}}.qcow2 {{hw.disk}}'
+  shell: 'qemu-img create -f qcow2 {{instance.img_name}}.qcow2 {{vm.disk}}'
   args:
     chdir: '{{instance.img}}'
     creates: '{{instance.img}}/{{instance.img_name}}.qcow2'
