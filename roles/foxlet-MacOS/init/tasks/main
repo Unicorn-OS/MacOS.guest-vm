@@ -63,7 +63,7 @@
   lineinfile:
     dest: '{{instance.src}}/basic.sh'
     regexp: "-m 2G"
-    line: "-m {{ vm.mem }}G"
+    line: "-m {{ vm.memory }}G"
 
 - name: CPU
   lineinfile:
