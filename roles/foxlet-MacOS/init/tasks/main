@@ -38,8 +38,8 @@
         BaseSystem.img
         basic.sh
 
-- name: Download macos {{version}}
-  shell: './jumpstart.sh --{{version}}'
+- name: Download macos {{mac.version}}
+  shell: './jumpstart.sh --{{mac.version}}'
   args:
     chdir: '{{mac.src}}'
     creates: '{{mac.src}}/BaseSystem.img'

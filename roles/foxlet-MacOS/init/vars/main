@@ -4,4 +4,4 @@ machome: '/home/{{user}}/.uni/cloud/macos'
 mac:
   src: '{{machome}}/src'
   img: '{{machome}}/img'
-  img_name: 'Dev-MacOS-{{version}}'
+  img_name: 'Dev-MacOS-{{mac.version}}'
