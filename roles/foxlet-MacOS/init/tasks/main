@@ -65,13 +65,13 @@
   lineinfile:
     dest: '{{instance.src}}/basic.sh'
     regexp: "-m 2G"
-    line: "-m {{ vm.memory }}G"
+    line: "-m {{ vm.memory }}G \\"
 
 - name: CPU
   lineinfile:
     dest: '{{instance.src}}/basic.sh'
     regexp: "-smp 4,cores=2"
-    line: "-smp cores={{cores}},threads={{threads}},sockets=1"
+    line: "-smp cores={{cores}},threads={{threads}},sockets=1 \\"
 
 
 - name: Set User
