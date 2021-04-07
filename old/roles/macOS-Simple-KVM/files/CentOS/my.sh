@@ -1,6 +1,6 @@
 #!/bin/bash
 
-myImg=/home/uni/cloud/img/Catalina.qcow2
+myImg=/home/{{user}}/cloud/img/Catalina.qcow2
 OSK="ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc"
 VMDIR=$PWD
 OVMF=$VMDIR/firmware
