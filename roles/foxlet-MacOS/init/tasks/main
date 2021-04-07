@@ -12,9 +12,11 @@
   file:
     path: '{{item}}'
     state: directory
+    owner: '{{ansible_user}}'
   with_items:
     - '{{instance.src}}'
     - '{{instance.img}}'
+  become: true
 
 - name: git
   block:
@@ -70,3 +72,12 @@
     dest: '{{instance.src}}/basic.sh'
     regexp: "-smp 4,cores=2"
     line: "-smp cores={{cores}},threads={{threads}},sockets=1"
+
+
+- name: Set User
+  file:
+    path: '{{mac_home}}'
+    state: directory
+    owner: '{{user}}'
+    recurse: yes
+  become: true

@@ -1,7 +1,7 @@
 ---
-machome: '/home/{{user}}/.uni/cloud/macos'
+mac_home: '/home/{{user}}/.uni/cloud/macos'
 
 instance:
-  src: '{{machome}}/src'
-  img: '{{machome}}/img'
+  src: '{{mac_home}}/src'
+  img: '{{mac_home}}/img'
   img_name: 'Dev-MacOS-{{mac.version}}'
