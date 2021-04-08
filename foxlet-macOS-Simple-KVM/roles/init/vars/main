@@ -4,4 +4,4 @@ mac_home: '/home/{{user}}/.uni/cloud/macos'
 instance:
   src: '{{mac_home}}/src'
   img: '{{mac_home}}/img'
-  img_name: 'Dev-MacOS-{{mac.version}}'
+  img_name: 'MacOS-{{mac.version}}'
