@@ -1,0 +1,6 @@
+---
+user: dane
+hw:
+  cores: 2
+  threads: 4
+  disk: 256

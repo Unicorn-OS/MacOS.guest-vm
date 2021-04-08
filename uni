@@ -1,5 +1,11 @@
 ---
 - hosts: net
+  vars:
+    user: me
+    hw:
+      cores: 8
+      threads: 8
+      disk: 256
   roles:
   - foxlet-macOS-Simple-KVM/this
 
