@@ -25,20 +25,20 @@
       path: '{{instance.src}}/.git/config'
     register: src_exists
 
-  - name: Git checkout
-    git:
-      repo: https://github.com/foxlet/macOS-Simple-KVM.git
-      dest: '{{instance.src}}'
-      version: '{{commit}}'
-    when: not src_exists.stat.exists
+- name: Git checkout
+  git:
+    repo: https://github.com/foxlet/macOS-Simple-KVM.git
+    dest: '{{instance.src}}'
+    version: '{{commit}}'
+  when: not src_exists.stat.exists
 
-  - name: .gitignore local changes
-    blockinfile:
-      path: '{{instance.src}}/.gitignore'
-      backup: yes
-      block: |
-        BaseSystem.img
-        basic.sh
+- name: .gitignore local changes
+  blockinfile:
+    path: '{{instance.src}}/.gitignore'
+    backup: yes
+    block: |
+      BaseSystem.img
+      basic.sh
 
 - name: Download macos {{mac.version}}
   shell: './jumpstart.sh --{{mac.version}}'
@@ -65,7 +65,7 @@
   lineinfile:
     dest: '{{instance.src}}/basic.sh'
     regexp: "-m 2G"
-    line: "-m {{ vm.memory }}G \\"
+    line: "-m {{ hw.memory }}G \\"
 
 - name: CPU
   lineinfile:
