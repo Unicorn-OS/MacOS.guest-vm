@@ -6,6 +6,6 @@
       cores: 8
       disk: 256
       memory: 4
-      threads: 8
+      threads: 1
   roles:
   - this
