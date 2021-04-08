@@ -1,8 +1,8 @@
 ---
 dependencies:
-  - role: set
   - role: test
-  - role: foxlet-MacOS/init
+  - role: init
+  - role: start
 #  - role: sikuli/install
-#  - role: foxlet-MacOS/virt-manager
+#  - role: virt-manager
 # Need to remove magic() from Upstream KVM!

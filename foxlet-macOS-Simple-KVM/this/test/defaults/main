@@ -1,10 +1,7 @@
 ---
+user: dane
 hw:
   cores: 8
   disk: 256
   memory: 4
   threads: 8
-
-mac:
-  version: catalina
-# mojave

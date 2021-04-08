@@ -47,7 +47,7 @@
     creates: '{{instance.src}}/BaseSystem.img'
 
 - name: Create vm img
-  shell: 'qemu-img create -f qcow2 {{instance.img_name}}.qcow2 {{vm.disk}}'
+  shell: 'qemu-img create -f qcow2 {{instance.img_name}}.qcow2 {{hw.disk}}G'
   args:
     chdir: '{{instance.img}}'
     creates: '{{instance.img}}/{{instance.img_name}}.qcow2'
@@ -71,7 +71,7 @@
   lineinfile:
     dest: '{{instance.src}}/basic.sh'
     regexp: "-smp 4,cores=2"
-    line: "-smp cores={{cores}},threads={{threads}},sockets=1 \\"
+    line: "-smp cores={{hw.cores}},threads={{hw.threads}},sockets=1 \\"
 
 
 - name: Set User

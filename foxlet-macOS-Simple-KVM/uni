@@ -8,4 +8,4 @@
       memory: 4
       threads: 8
   roles:
-  - foxlet-macOS-Simple-KVM/this
+  - this
