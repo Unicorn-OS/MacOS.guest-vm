@@ -1,6 +1,5 @@
 ---
 - hosts: net
   roles:
-  - this
-  # - sikuli/install
-  # - foxlet-MacOS/virt-manager
+  - foxlet-macOS-Simple-KVM/this
+
