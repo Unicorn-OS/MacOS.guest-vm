@@ -2,4 +2,8 @@
 
 
 # Source:
+## Foxlet
 - [foxlet/macOS-Simple-KVM](https://github.com/foxlet/macOS-Simple-KVM)
+
+## Sosumi
+https://snapcraft.io/sosumi
